@@ -12,9 +12,9 @@ public class _01_Giris {
 
 //  @Test JUnit
 //  public void test(){
-//      websitesini ac
+//      websitesini ac    //beforclass
 //      login islemini yap
-//       driveri kapat
+//       driveri kapat    //afterclass
 //   }
 
     // Eğer herhangi bir sıralama verilmezse metod isimlerinin alfabetik çalışıyor
