@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeDriverService;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -15,6 +16,8 @@ import java.util.logging.Logger;
 
 public class BaseDriver {
     public static WebDriver driver;
+
+    public static WebDriverWait wait;
     @BeforeClass
     public void baslangicIslemleri(){
         Logger logger= Logger.getLogger(""); // output a ait bütün logları üreten objeye/servise ulaştım ""
@@ -25,7 +28,7 @@ public class BaseDriver {
         Duration dr=Duration.ofSeconds(30);
         driver.manage().timeouts().pageLoadTimeout(dr);
         driver.manage().timeouts().implicitlyWait(dr);
-
+        wait=new WebDriverWait(driver,Duration.ofSeconds(30));  //Gun3  Class 2 de selectByIndex konusunda anlatildi
         loginTest();
     }
 
