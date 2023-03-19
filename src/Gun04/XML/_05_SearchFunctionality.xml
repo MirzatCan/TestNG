@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+    <test name="test1">
+        <parameter name="kelime" value="mac"></parameter>
+        <classes>
+            <class name="Gun04._05_SearchFunctionality"></class>
+        </classes>
+    </test>
+    <test name="test2">
+        <parameter name="kelime" value="samsung"></parameter>
+        <classes>
+            <class name="Gun04._05_SearchFunctionality"></class>
+        </classes>
+    </test>
+</suite>

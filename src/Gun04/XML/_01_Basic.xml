@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Suite">  <!--Tüm testleri kapsayan bölüm-->
+    <test name="test1">  <!--test 1 i kapsayan bölüm-->
+        <classes>  <!--çalışacak classların yazıldığı bölüm-->
+            <class name="Gun04._02_Intro"></class>
+        </classes>
+    </test>
+</suite>
