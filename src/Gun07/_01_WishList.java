@@ -5,6 +5,7 @@ import Utlity.Tools;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
 import java.util.List;
@@ -21,28 +22,32 @@ public class _01_WishList extends BaseDriver {
    5- Burada çıkan ürünle tıklanan ürünün isminin aynı olup olmadığını doğrulayınız.
  */
     @Test
-    void begenilerdeVarMiTest(){
+    @Parameters("searchTsxt")
+    void begenilerdeVarMiTest(String arananKelime){
         WebElement aramaTusu = driver.findElement(By.name("search"));
-        aramaTusu.sendKeys("ipod");
+        aramaTusu.sendKeys(arananKelime);
         WebElement aramaButunu = driver.findElement(By.cssSelector("button[class='btn btn-default btn-lg']"));
         aramaButunu.click();
         List<WebElement> urunleriBegenilerAtmaButunu=driver.findElements(By.cssSelector("button[data-original-title='Add to Wish List']"));
         List<WebElement> urunlerinAdi=driver.findElements(By.cssSelector("[class='caption']>h4"));
-        int randumSayi=(int) (Math.random()*(urunleriBegenilerAtmaButunu.size()-1));
+        int randumSayi=(int) (Math.random()*urunlerinAdi.size());
         System.out.println("randumSayi = " + randumSayi);
+        String aranacakKelime=urunlerinAdi.get(randumSayi).getText();  //bunu assagda for dongu icindeki if de birek kullansam calismadi, nedenini anlamadim
         urunleriBegenilerAtmaButunu.get(randumSayi).click();
         WebElement wishlist=driver.findElement(By.linkText("wish list"));
         wishlist.click();
 
-        Tools.bekle(5);
         List<WebElement> begenilerUrunler=driver.findElements(By.xpath("//*[@class='text-left']//a"));
-        for (WebElement e:begenilerUrunler) {
-            System.out.println(e.getText());
+
+        boolean bulundu=false;
+        for (WebElement u:begenilerUrunler) {
+            if (u.getText().toLowerCase().contains(aranacakKelime.toLowerCase())){
+                bulundu=true;
+                break;
+            }
         }
-//        for (WebElement u:begenilerUrunler) {
-//            Assert.assertTrue(u.getText().toLowerCase().contains(urunlerinAdi.get(randumSayi).getText().toLowerCase()),"Sepette yok");
-//        }
 
-
+        if (bulundu=false)
+            Assert.fail();
     }
 }
